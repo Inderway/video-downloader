@@ -1,0 +1,36 @@
+[2026-08-27 04:41:37] [INFO] 程序启动 (yt-dlp 2026.08.19)
+[2026-08-27 04:41:45] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:41:45] [INFO] 开始下载: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:41:45] [INFO] 保存目录: I:/downloads
+[2026-08-27 04:41:45] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:41:45] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 04:41:47] [WARNING] 尝试从浏览器 edge 自动获取 cookie
+[2026-08-27 04:41:47] [WARNING] 尝试通过 Chrome (CDP) 自动获取 cookie
+[2026-08-27 04:41:47] [WARNING] 首次使用: 将弹出 Chrome 窗口，请在其中登录 YouTube 一次，之后即可全自动更新 cookie
+[2026-08-27 04:41:50] [WARNING] 请在弹出的 Chrome 窗口中登录 YouTube，登录完成后关闭该窗口，程序将自动继续...
+[2026-08-27 04:44:22] [INFO] 已通过 Chrome 自动获取 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:44:22] [ERROR] 浏览器 cookie 与手动 cookie 均尝试失败
+[2026-08-27 04:44:28] [ERROR] 错误: [0;31mERROR:[0m invalid Netscape format cookies file 'i:\\github\\video-downloader\\cookies.txt': 'accounts.google.com\tTRUE\t/\tTRUE\t1790368915\tOTZ\t8757882_24_24__24_'
+[2026-08-27 04:44:28] [INFO] 可点击「继续下载」重试，将自动断点续传
+[2026-08-27 04:44:38] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:44:38] [INFO] 开始下载: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:44:38] [INFO] 保存目录: I:/downloads
+[2026-08-27 04:44:38] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:44:38] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 04:44:39] [WARNING] 尝试从浏览器 edge 自动获取 cookie
+[2026-08-27 04:44:39] [WARNING] 尝试通过 Chrome (CDP) 自动获取 cookie
+[2026-08-27 04:44:42] [INFO] 已通过 Chrome 自动获取 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:44:42] [ERROR] 浏览器 cookie 与手动 cookie 均尝试失败
+[2026-08-27 04:44:45] [ERROR] 错误: [0;31mERROR:[0m invalid Netscape format cookies file 'i:\\github\\video-downloader\\cookies.txt': 'accounts.google.com\tTRUE\t/\tTRUE\t1790368915\tOTZ\t8757882_24_24__24_'
+[2026-08-27 04:44:45] [INFO] 可点击「继续下载」重试，将自动断点续传
+[2026-08-27 04:45:21] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:45:21] [INFO] 开始下载: https://www.youtube.com/watch?v=kArsmlBoFcM
+[2026-08-27 04:45:21] [INFO] 保存目录: I:/downloads
+[2026-08-27 04:45:21] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:45:21] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 04:45:21] [WARNING] 尝试从浏览器 edge 自动获取 cookie
+[2026-08-27 04:45:21] [WARNING] 尝试通过 Chrome (CDP) 自动获取 cookie
+[2026-08-27 04:45:24] [INFO] 已通过 Chrome 自动获取 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 04:45:24] [ERROR] 浏览器 cookie 与手动 cookie 均尝试失败
+[2026-08-27 04:45:29] [ERROR] 错误: [0;31mERROR:[0m invalid Netscape format cookies file 'i:\\github\\video-downloader\\cookies.txt': 'accounts.google.com\tTRUE\t/\tTRUE\t1790368915\tOTZ\t8757882_24_24__24_'
+[2026-08-27 04:45:29] [INFO] 可点击「继续下载」重试，将自动断点续传

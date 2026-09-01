@@ -1,0 +1,141 @@
+[2026-08-27 19:33:56] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=Ywf5rch4TlU&t=12s
+[2026-08-27 19:33:56] [INFO] 开始下载: https://www.youtube.com/watch?v=Ywf5rch4TlU&t=12s
+[2026-08-27 19:33:56] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:33:56] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:34:19] [INFO] 已加入队列(1): https://www.youtube.com/watch?v=ELFSnSmjm8U
+[2026-08-27 19:34:24] [INFO] 已加入队列(2): https://www.youtube.com/watch?v=Q52-pWDPvzo
+[2026-08-27 19:34:29] [INFO] 已加入队列(3): https://www.youtube.com/watch?v=NyaSxKDEfAA
+[2026-08-27 19:34:34] [INFO] 已加入队列(4): https://www.youtube.com/watch?v=IhqBhshsV7E&t=20s
+[2026-08-27 19:34:39] [INFO] 已加入队列(5): https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:34:44] [INFO] 已加入队列(6): https://www.youtube.com/watch?v=o-DOObuaN90
+[2026-08-27 19:34:52] [INFO] 已加入队列(7): https://www.youtube.com/watch?v=LqvuSWEDQp0
+[2026-08-27 19:35:18] [INFO] 已加入队列(8): https://www.youtube.com/watch?v=hL1zTwugfyI
+[2026-08-27 19:35:25] [INFO] 已加入队列(9): https://www.youtube.com/watch?v=MxADQewSc_0&t=50s
+[2026-08-27 19:35:32] [INFO] 已加入队列(10): https://www.youtube.com/watch?v=668MJJjFb0Q
+[2026-08-27 19:35:40] [INFO] 已加入队列(11): https://www.youtube.com/watch?v=MYQJ8uyKA7I
+[2026-08-27 19:35:46] [INFO] 已加入队列(12): https://www.youtube.com/watch?v=vMeY1GiLVgs
+[2026-08-27 19:35:53] [INFO] 已加入队列(13): https://www.youtube.com/watch?v=1_sOOkHiHts
+[2026-08-27 19:35:59] [INFO] 已加入队列(14): https://www.youtube.com/watch?v=DG_p3RTVYPY
+[2026-08-27 19:36:26] [INFO] 已加入队列(15): https://www.youtube.com/watch?v=qA6DWAXKSZE
+[2026-08-27 19:36:34] [INFO] 已加入队列(16): https://www.youtube.com/watch?v=UPumBsJLS7k&t=2s
+[2026-08-27 19:37:31] [INFO] 已下载: 電視寬屏觀看版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 135mm f1.8 GM ╳ SONY A7M4 (2160p)
+保存至: I:/downloads
+[2026-08-27 19:37:31] [INFO] 开始下载: https://www.youtube.com/watch?v=ELFSnSmjm8U
+[2026-08-27 19:37:31] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:37:31] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:37:59] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 35mm f1.8 ╳ SONY A7M3 (2160p)
+保存至: I:/downloads
+[2026-08-27 19:37:59] [INFO] 开始下载: https://www.youtube.com/watch?v=Q52-pWDPvzo
+[2026-08-27 19:37:59] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:37:59] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:39:27] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Samyang 50mm f1.4 FE II ╳ SONY A7M3 ╳ RF 28-70mm f2 ╳ Canon R6 mark II ╳ R5 (2160p)
+保存至: I:/downloads
+[2026-08-27 19:39:27] [INFO] 开始下载: https://www.youtube.com/watch?v=NyaSxKDEfAA
+[2026-08-27 19:39:27] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:39:27] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:39:41] [INFO] 已下载: 黃韻霏 ╳ IG feifei_11111 ╳ Canon RF 85mm f1.2 ╳ Canon EOS R5 (3240p)
+保存至: I:/downloads
+[2026-08-27 19:39:41] [INFO] 开始下载: https://www.youtube.com/watch?v=IhqBhshsV7E&t=20s
+[2026-08-27 19:39:41] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:39:41] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:39:42] [INFO] 已下载: 黃韻霏 ╳ IG feifei_11111 ╳ Canon RF 85mm f1.2 ╳ Canon EOS R5 (3240p)
+保存至: I:/downloads
+[2026-08-27 19:39:42] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:39:42] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:39:42] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:39:44] [WARNING] cookie 无效或已过期，需要手动指定 cookie 文件: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:39:54] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:39:59] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:39:59] [INFO] 开始下载: https://www.youtube.com/watch?v=o-DOObuaN90
+[2026-08-27 19:39:59] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:39:59] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:40:05] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:40:05] [INFO] 开始下载: https://www.youtube.com/watch?v=LqvuSWEDQp0
+[2026-08-27 19:40:05] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:40:05] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:40:40] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (3240p)
+保存至: I:/downloads
+[2026-08-27 19:40:40] [INFO] 开始下载: https://www.youtube.com/watch?v=hL1zTwugfyI
+[2026-08-27 19:40:40] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:40:40] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:40:44] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (3240p)
+保存至: I:/downloads
+[2026-08-27 19:40:44] [INFO] 开始下载: https://www.youtube.com/watch?v=MxADQewSc_0&t=50s
+[2026-08-27 19:40:44] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:40:44] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:08] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (2160p)
+保存至: I:/downloads
+[2026-08-27 19:41:08] [INFO] 开始下载: https://www.youtube.com/watch?v=668MJJjFb0Q
+[2026-08-27 19:41:08] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:08] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:13] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (3240p)
+保存至: I:/downloads
+[2026-08-27 19:41:13] [INFO] 开始下载: https://www.youtube.com/watch?v=MYQJ8uyKA7I
+[2026-08-27 19:41:13] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:13] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:18] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (3240p)
+保存至: I:/downloads
+[2026-08-27 19:41:18] [INFO] 开始下载: https://www.youtube.com/watch?v=vMeY1GiLVgs
+[2026-08-27 19:41:18] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:18] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:23] [INFO] 已下载: 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ beautiful girl photography ╳ ถ่ายรูปสาวสวย (3240p)
+保存至: I:/downloads
+[2026-08-27 19:41:23] [INFO] 开始下载: https://www.youtube.com/watch?v=1_sOOkHiHts
+[2026-08-27 19:41:23] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:23] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:30] [INFO] 已下载: 電視寬屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (2160p)
+保存至: I:/downloads
+[2026-08-27 19:41:30] [INFO] 开始下载: https://www.youtube.com/watch?v=DG_p3RTVYPY
+[2026-08-27 19:41:30] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:30] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:35] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 19:41:35] [INFO] 开始下载: https://www.youtube.com/watch?v=qA6DWAXKSZE
+[2026-08-27 19:41:35] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:35] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:39] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 19:41:39] [INFO] 开始下载: https://www.youtube.com/watch?v=UPumBsJLS7k&t=2s
+[2026-08-27 19:41:39] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:41:39] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:41:43] [INFO] 已下载: 電視寬屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (2160p)
+保存至: I:/downloads
+[2026-08-27 19:44:14] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:44:14] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:44:14] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:44:14] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:44:21] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:44:31] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:44:31] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:44:31] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:44:31] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:44:36] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:50:56] [INFO] 程序启动 (v1.0.1, yt-dlp 2026.08.19)
+[2026-08-27 19:51:01] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:51:05] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:51:05] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:51:05] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:51:05] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:51:16] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:51:23] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:51:23] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:51:23] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:51:23] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:51:36] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:55:17] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:55:20] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:55:20] [INFO] 开始下载: https://www.youtube.com/watch?v=6wBdxpAxCiE
+[2026-08-27 19:55:20] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:55:20] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 19:56:16] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (360p)
+保存至: I:/downloads
+[2026-08-27 19:58:16] [INFO] 加入队列，即将开始: https://rr1---sn-ajoguc-cb.googlevideo.com/videoplayback?expire=1787853456&ei=MCaQasDZA_S8sfIP0ozSuA0&ip=2610%3A150%3Ac001%3A4%3A4cc%3A3644%3Ae128%3A4c54&id=o-ABLlxHPNxaorwXsRfNJgkuSQlgArPCsd1w59ANok2C6y&itag=401&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&siu=1&bui=AR3QkAmdM621T0Xe7OcR2hngV9UjbKLl8KjW26kyO5tkShHlgrtyD4psyi7yMCJNfE9R39HbbQ&spc=KBGBcqXgZ4WROnYE0P2F-TkjiyfxDqVt6DLLTGBuyPz0skzhD2FO-T24nDhagR-Xkss&vprv=1&svpuc=1&mime=video%2Fmp4&ns=UfvuyHhfCNr9yJ7caDP-BU4X&rqh=1&gir=yes&clen=72177725&dur=180.847&lmt=1787201118678836&keepalive=yes&fexp=51565115,52135441&c=WEB_CREATOR&sefc=1&txp=5309224&n=KKjzjD6PnIrzmg&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Csiu%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AE0s2JYwRAIgDxFIO886CIxau1EtfayG9n-dy9PRclhxc3MJ1opF1q8CIFX0oLkYKw7gGoydh8yXCnSmazaMUtbpSVg2I8stGFor&pot=Mlt13pqA6HCZXnWa3VuB-bEoSRbW7IL8IgEWgvoxhi2827y2NF5mhv4BUUSwKTuAHcNqzu-k9fenaN0vBxmSFIQpyn7swLuY8LqF2FTR86pX6IdmcLxlaKJs32CX&rm=sn-a5myr7z,sn-i3bkz7s,sn-npod77l&rrc=104,40,40&req_id=dd2be3cdc871a3ee&cps=99&ipbypass=yes&redirect_counter=3&cms_redirect=yes&cmsv=e&met=1787831883,&mh=K5&mip=119.237.242.45&mm=39&mn=sn-ajoguc-cb&ms=ltr&mt=1787831297&mv=m&mvi=1&pl=19&lsparams=cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwQwIgHf7SvePxpUa8Qjt2uO7Ivc_DNYPHwjtMRq94a_yU84ACH2kOa8JS_BTP0l9YC54Wi3m4M_hd74dnToMyT3QKKxI%3D
+[2026-08-27 19:58:16] [INFO] 开始下载: https://rr1---sn-ajoguc-cb.googlevideo.com/videoplayback?expire=1787853456&ei=MCaQasDZA_S8sfIP0ozSuA0&ip=2610%3A150%3Ac001%3A4%3A4cc%3A3644%3Ae128%3A4c54&id=o-ABLlxHPNxaorwXsRfNJgkuSQlgArPCsd1w59ANok2C6y&itag=401&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&siu=1&bui=AR3QkAmdM621T0Xe7OcR2hngV9UjbKLl8KjW26kyO5tkShHlgrtyD4psyi7yMCJNfE9R39HbbQ&spc=KBGBcqXgZ4WROnYE0P2F-TkjiyfxDqVt6DLLTGBuyPz0skzhD2FO-T24nDhagR-Xkss&vprv=1&svpuc=1&mime=video%2Fmp4&ns=UfvuyHhfCNr9yJ7caDP-BU4X&rqh=1&gir=yes&clen=72177725&dur=180.847&lmt=1787201118678836&keepalive=yes&fexp=51565115,52135441&c=WEB_CREATOR&sefc=1&txp=5309224&n=KKjzjD6PnIrzmg&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Csiu%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AE0s2JYwRAIgDxFIO886CIxau1EtfayG9n-dy9PRclhxc3MJ1opF1q8CIFX0oLkYKw7gGoydh8yXCnSmazaMUtbpSVg2I8stGFor&pot=Mlt13pqA6HCZXnWa3VuB-bEoSRbW7IL8IgEWgvoxhi2827y2NF5mhv4BUUSwKTuAHcNqzu-k9fenaN0vBxmSFIQpyn7swLuY8LqF2FTR86pX6IdmcLxlaKJs32CX&rm=sn-a5myr7z,sn-i3bkz7s,sn-npod77l&rrc=104,40,40&req_id=dd2be3cdc871a3ee&cps=99&ipbypass=yes&redirect_counter=3&cms_redirect=yes&cmsv=e&met=1787831883,&mh=K5&mip=119.237.242.45&mm=39&mn=sn-ajoguc-cb&ms=ltr&mt=1787831297&mv=m&mvi=1&pl=19&lsparams=cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwQwIgHf7SvePxpUa8Qjt2uO7Ivc_DNYPHwjtMRq94a_yU84ACH2kOa8JS_BTP0l9YC54Wi3m4M_hd74dnToMyT3QKKxI%3D
+[2026-08-27 19:58:16] [INFO] 保存目录: I:/downloads
+[2026-08-27 19:58:16] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt

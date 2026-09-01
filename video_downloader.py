@@ -13,24 +13,54 @@ import datetime
 import json
 import os
 import shutil
+import socket
 import subprocess
 import threading
 import time
 import tkinter as tk
-import urllib.request
 from tkinter import ttk, filedialog, messagebox
 
 import yt_dlp
-
-try:
-    import websocket
-except ImportError:
-    websocket = None
+from yt_dlp.utils import DownloadCancelled
 
 CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
 DEFAULT_DIR = os.path.join(os.path.expanduser("~"), "Downloads")
 LOGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
 CONCURRENT_FRAGMENTS = 8
+VERSION = "1.1.5"
+
+POT_PROVIDER_PORT = 4416
+POT_PROVIDER_SERVER = os.path.join(os.path.expanduser("~"), "bgutil-ytdlp-pot-provider",
+                                   "server")
+POT_PROVIDER_CANDIDATES = (
+    os.path.join("E:", os.sep, "Programs", "bgutil-ytdlp-pot-provider", "server"),
+    POT_PROVIDER_SERVER,
+)
+
+
+def _find_deno():
+    return shutil.which("deno")
+
+
+def _detect_proxy():
+    """检测代理：环境变量优先，其次 Windows 系统代理(注册表)"""
+    for var in ("https_proxy", "http_proxy", "HTTPS_PROXY", "HTTP_PROXY"):
+        v = os.environ.get(var)
+        if v:
+            return v
+    try:
+        import winreg
+        with winreg.OpenKey(
+                winreg.HKEY_CURRENT_USER,
+                r"Software\Microsoft\Windows\CurrentVersion\Internet Settings") as key:
+            if winreg.QueryValueEx(key, "ProxyEnable")[0]:
+                server = winreg.QueryValueEx(key, "ProxyServer")[0]
+                if server and "://" not in server:
+                    server = "http://" + server
+                return server
+    except OSError:
+        pass
+    return None
 
 
 class FileLogger:
@@ -102,199 +132,6 @@ def _find_ffmpeg():
 
 def _find_ffprobe():
     return shutil.which("ffprobe")
-
-
-def _find_chrome():
-    for cand in (r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-                 r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"):
-        if os.path.isfile(cand):
-            return cand
-    return shutil.which("chrome")
-
-
-class ChromeCookieFetcher:
-    """通过 Chrome DevTools Protocol 让 Chrome 自己交出 cookie（浏览器自身解密，
-    绕过新版 App-Bound 加密）。使用独立 profile，用户首次需在其中登录一次。"""
-
-    PORT = 9222
-    PROFILE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                               "chrome-cookie-profile")
-    SESSION_COOKIES = {"__Secure-3PSID", "__Secure-1PSID", "SID",
-                       "SAPISID", "HSID", "SSID"}
-
-    def __init__(self):
-        self.proc = None
-        self.launched_by_me = False
-        self.target = None
-
-    # ---------- 启动/连接 ----------
-
-    def _alive(self):
-        try:
-            with urllib.request.urlopen(
-                    f"http://127.0.0.1:{self.PORT}/json/version", timeout=2):
-                return True
-        except Exception:
-            return False
-
-    def launch(self, headless=False):
-        exe = _find_chrome()
-        if not exe:
-            return False
-        args = [exe, f"--remote-debugging-port={self.PORT}",
-                "--remote-allow-origins=*",
-                f"--user-data-dir={self.PROFILE_DIR}",
-                "--no-first-run", "--no-default-browser-check",
-                "--disable-session-crashed-bubble", "--disable-features=Translate",
-                "https://www.youtube.com"]
-        if headless:
-            args.insert(1, "--headless=new")
-        try:
-            self.proc = subprocess.Popen(args, stdout=subprocess.DEVNULL,
-                                         stderr=subprocess.DEVNULL)
-        except OSError:
-            return False
-        for _ in range(40):
-            if self._alive():
-                return True
-            time.sleep(0.5)
-        return self._alive()
-
-    def kill(self):
-        if self.proc:
-            try:
-                subprocess.run(["taskkill", "/PID", str(self.proc.pid), "/T", "/F"],
-                               capture_output=True, timeout=10)
-            except Exception:
-                pass
-            self.proc = None
-
-    # ---------- CDP 取 cookie ----------
-
-    def get_cookies(self, timeout=15):
-        if websocket is None:
-            return None, "缺少 websocket-client 库"
-        try:
-            with urllib.request.urlopen(
-                    f"http://127.0.0.1:{self.PORT}/json", timeout=5) as resp:
-                targets = json.load(resp)
-        except Exception as e:
-            return None, f"连接调试端口失败: {e}"
-        page = next((t for t in targets if t.get("type") == "page"), None)
-        if not page:
-            return None, "Chrome 无可用页面"
-        try:
-            ws = websocket.create_connection(page["webSocketDebuggerUrl"],
-                                             timeout=timeout)
-        except Exception as e:
-            return None, f"WebSocket 连接失败: {e}"
-
-        def send(method, params=None):
-            ws.send(json.dumps({"id": 1, "method": method, "params": params or {}}))
-            while True:
-                resp = json.loads(ws.recv())
-                if resp.get("id") == 1:
-                    return resp
-
-        try:
-            send("Network.enable")
-            resp = send("Network.getAllCookies")
-        except Exception as e:
-            ws.close()
-            return None, f"CDP 调用失败: {e}"
-        ws.close()
-        cookies = (resp.get("result") or {}).get("cookies") or []
-        return cookies, None
-
-    @staticmethod
-    def _logged_in(cookies):
-        names = {c.get("name") for c in cookies}
-        return bool(names & ChromeCookieFetcher.SESSION_COOKIES)
-
-    @staticmethod
-    def _to_netscape(cookies):
-        lines = ["# Netscape HTTP Cookie File",
-                 "# Generated by video-downloader (Chrome CDP)"]
-        for c in cookies:
-            if c.get("partitionKey"):
-                continue
-            domain = c.get("domain") or ""
-            path = c.get("path") or "/"
-            secure = "TRUE" if c.get("secure") else "FALSE"
-            expires = c.get("expires")
-            if not expires or expires == -1:
-                expires = 2147483647
-            else:
-                expires = int(expires)
-            prefix = f"#HttpOnly_{domain}" if c.get("httpOnly") else domain
-            lines.append(f"{prefix}\tTRUE\t{path}\t{secure}\t{expires}\t"
-                         f"{c.get('name') or ''}\t{c.get('value') or ''}")
-        return "\n".join(lines) + "\n"
-
-    def fetch(self, on_need_login=None):
-        """获取登录 cookie 并写入 cookies.txt。返回 (ok, msg)
-        登录阶段使用无调试参数的普通 Chrome（避免自动化检测导致无法登录），
-        登录完成后无头启动采集 cookie。"""
-        cookies, err = self._harvest()
-        if cookies and self._logged_in(cookies):
-            return self._write(cookies)
-
-        if on_need_login:
-            on_need_login()
-        if not self._open_login_window():
-            return False, "无法打开 Chrome 登录窗口"
-        cookies, err = self._harvest()
-        if cookies and self._logged_in(cookies):
-            return self._write(cookies)
-        return False, "Chrome 登录窗口已关闭，但未检测到登录（请确认已登录 YouTube）"
-
-    def _harvest(self):
-        """无头启动(若端口未占用)并采集 cookie, 完毕后关闭自启实例"""
-        launched = not self._alive()
-        if launched:
-            ok = False
-            for _ in range(5):  # profile 可能被前一个实例短暂占用, 重试
-                if self.launch(headless=True):
-                    ok = True
-                    break
-                time.sleep(3)
-            if not ok:
-                return None, "无法启动 Chrome"
-        cookies, err = self.get_cookies()
-        if launched:
-            self.kill()
-        return cookies or [], err
-
-    def _open_login_window(self):
-        """普通 Chrome (无任何调试参数), 打开登录页并等待用户关闭窗口"""
-        exe = _find_chrome()
-        if not exe:
-            return False
-        args = [exe, f"--user-data-dir={self.PROFILE_DIR}",
-                "--no-first-run", "--no-default-browser-check",
-                "https://www.youtube.com"]
-        try:
-            self.proc = subprocess.Popen(args, stdout=subprocess.DEVNULL,
-                                         stderr=subprocess.DEVNULL)
-        except OSError:
-            return False
-        try:
-            self.proc.wait()  # 用户登录后关闭窗口即继续
-        except Exception:
-            pass
-        self.proc = None
-        time.sleep(2)  # 等待 profile 释放
-        return True
-
-    def _write(self, cookies):
-        try:
-            self.target = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                       "cookies.txt")
-            with open(self.target, "w", encoding="utf-8") as f:
-                f.write(self._to_netscape(cookies))
-        except OSError as e:
-            return False, f"写入 cookie 文件失败: {e}"
-        return True, ""
 
 
 _HW_ENCODERS = None
@@ -440,23 +277,38 @@ class ToolWindowBase:
 
 
 class RotationTool(ToolWindowBase):
-    """视频旋转：输入 + 进度 + 日志一体窗口"""
+    """视频旋转：输入 + 进度 + 日志一体窗口（支持多文件队列）"""
 
     def __init__(self, app, saved_dir):
         self.outdir_default = saved_dir or ""
+        self.files = []
         super().__init__(app, "视频旋转")
         self.angle = 90
-        self.path = ""
         self.outdir = ""
-        self.out = ""
 
     def _build_inputs(self):
         frame = self.input_frame
-        ttk.Label(frame, text="视频文件:").grid(row=0, column=0, sticky="w")
-        self.video_var = tk.StringVar()
-        entry = ttk.Entry(frame, textvariable=self.video_var, width=40)
-        entry.grid(row=0, column=1, padx=6, pady=3)
-        ttk.Button(frame, text="浏览", command=self._pick_video).grid(row=0, column=2)
+        ttk.Label(frame, text="视频文件:").grid(row=0, column=0, sticky="nw", pady=(0, 4))
+
+        body = ttk.Frame(frame)
+        body.grid(row=0, column=1, columnspan=2, sticky="w", padx=6)
+        self.file_listbox = tk.Listbox(body, height=4, width=46,
+                                       selectmode="extended", activestyle="dotbox")
+        sb = ttk.Scrollbar(body, orient="vertical", command=self.file_listbox.yview)
+        self.file_listbox.config(yscrollcommand=sb.set)
+        self.file_listbox.pack(side="left", fill="both", expand=True)
+        sb.pack(side="right", fill="y")
+
+        btns = ttk.Frame(frame)
+        btns.grid(row=0, column=3, sticky="n", padx=(6, 0))
+        ttk.Button(btns, text="添加...", command=self._pick_video).pack(pady=1, fill="x")
+        ttk.Button(btns, text="移除选中", command=self._remove_selected).pack(pady=1, fill="x")
+        ttk.Button(btns, text="清空", command=self._clear_files).pack(pady=1, fill="x")
+
+        self.count_var = tk.StringVar(value="已选 0 个文件")
+        ttk.Label(frame, textvariable=self.count_var,
+                  foreground="#666").grid(row=0, column=1, columnspan=2,
+                                          sticky="w", padx=6, pady=(0, 2))
 
         ttk.Label(frame, text="输出文件夹:").grid(row=1, column=0, sticky="w")
         self.outdir_var = tk.StringVar(value=self.outdir_default)
@@ -464,73 +316,87 @@ class RotationTool(ToolWindowBase):
         entry.grid(row=1, column=1, padx=6, pady=3)
         ttk.Button(frame, text="浏览", command=self._pick_outdir).grid(row=1, column=2)
 
-        ttk.Label(frame, text="输出文件名:").grid(row=2, column=0, sticky="w")
-        self.filename_var = tk.StringVar(value="")
-        ttk.Label(frame, textvariable=self.filename_var,
-                  foreground="#666").grid(row=2, column=1, columnspan=2, sticky="w", padx=6)
-
-        ttk.Label(frame, text="顺时针角度:").grid(row=3, column=0, sticky="w")
+        ttk.Label(frame, text="顺时针角度:").grid(row=2, column=0, sticky="w")
         self.angle_var = tk.IntVar(value=90)
         angle_frame = ttk.Frame(frame)
-        angle_frame.grid(row=3, column=1, columnspan=2, sticky="w", padx=6)
+        angle_frame.grid(row=2, column=1, columnspan=2, sticky="w", padx=6)
         for a in (90, 180, 270):
             ttk.Radiobutton(angle_frame, text=f"{a}°", value=a,
-                            variable=self.angle_var,
-                            command=self._update_filename).pack(side="left", padx=6)
+                            variable=self.angle_var).pack(side="left", padx=6)
 
-    def _update_filename(self):
-        base = os.path.splitext(os.path.basename(self.video_var.get()))[0]
-        if base:
-            self.filename_var.set(f"{base}_rot{self.angle_var.get()}.mp4")
+        ttk.Label(frame, text="输出文件: 原名_rot{角度}.mp4，逐条执行",
+                  foreground="#888").grid(row=3, column=1, columnspan=2,
+                                          sticky="w", padx=6)
+
+    def _refresh_list(self):
+        self.file_listbox.delete(0, "end")
+        for path in self.files:
+            self.file_listbox.insert("end", os.path.basename(path))
+        self.count_var.set(f"已选 {len(self.files)} 个文件")
 
     def _pick_video(self):
-        path = filedialog.askopenfilename(
-            title="选择视频文件",
+        paths = filedialog.askopenfilenames(
+            title="选择视频文件(可多选)",
+            parent=self.win,
             filetypes=[("视频文件", "*.mp4 *.mkv *.avi *.mov *.webm *.flv *.ts *.m4v"),
                        ("所有文件", "*.*")])
-        if path:
-            self.video_var.set(path)
-            self._update_filename()
+        for p in paths:
+            if p not in self.files:
+                self.files.append(p)
+        self._refresh_list()
+
+    def _remove_selected(self):
+        idxs = list(self.file_listbox.curselection())
+        for idx in reversed(idxs):
+            del self.files[idx]
+        self._refresh_list()
+
+    def _clear_files(self):
+        self.files = []
+        self._refresh_list()
 
     def _pick_outdir(self):
         initial = self.outdir_var.get().strip() or ""
         if not os.path.isdir(initial):
             initial = DEFAULT_DIR
-        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial)
+        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial,
+                                       parent=self.win)
         if path:
             self.outdir_var.set(path)
 
     def _validate(self):
-        self.path = self.video_var.get().strip()
         self.outdir = self.outdir_var.get().strip()
-        if not self.path:
-            return False, "请选择视频文件"
+        if not self.files:
+            return False, "请选择至少一个视频文件"
         if not self.outdir:
             return False, "请选择输出文件夹"
-        if not os.path.isfile(self.path):
-            return False, "视频文件不存在"
         if not os.path.isdir(self.outdir):
             return False, f"输出文件夹不存在:\n{self.outdir}"
         self.angle = self.angle_var.get()
-        self.out = os.path.join(self.outdir,
-                                os.path.splitext(os.path.basename(self.path))[0]
-                                + f"_rot{self.angle}.mp4")
-        if os.path.exists(self.out):
-            if not messagebox.askyesno("文件已存在",
-                                       f"目标文件已存在，是否覆盖？\n{self.out}",
-                                       parent=self.win):
+        existing = [os.path.join(self.outdir,
+                                 os.path.splitext(os.path.basename(p))[0]
+                                 + f"_rot{self.angle}.mp4") for p in self.files]
+        existing = [o for o in existing if os.path.exists(o)]
+        if existing:
+            if not messagebox.askyesno(
+                    "文件已存在",
+                    f"有 {len(existing)} 个目标文件已存在，是否覆盖？\n"
+                    + "\n".join(existing[:5]) + ("..." if len(existing) > 5 else ""),
+                    parent=self.win):
                 return False, "已取消（文件已存在）"
         self.app.config["rotate_dir"] = self.outdir
         _save_config(self.app.config)
         return True, None
 
     def _run(self):
-        self.log(f"开始旋转: {self.path} ({self.angle}° 顺时针)")
-        self.log(f"输出: {self.out}")
+        tasks = [(p, os.path.join(self.outdir,
+                                  os.path.splitext(os.path.basename(p))[0]
+                                  + f"_rot{self.angle}.mp4")) for p in self.files]
+        self.log(f"开始旋转 {len(tasks)} 个文件 ({self.angle}° 顺时针)")
+        self.log(f"输出目录: {self.outdir}")
         self.start_animate()
         threading.Thread(target=self.app._rotate_worker,
-                         args=(self, self.path, self.angle, self.out),
-                         daemon=True).start()
+                         args=(self, tasks, self.angle), daemon=True).start()
 
 
 class MergeTool(ToolWindowBase):
@@ -575,6 +441,7 @@ class MergeTool(ToolWindowBase):
     def _pick_video(self):
         path = filedialog.askopenfilename(
             title="选择视频文件",
+            parent=self.win,
             filetypes=[("视频文件", "*.mp4 *.mkv *.mov *.avi *.webm *.flv *.ts *.m4v *.mpg *.wmv"),
                        ("所有文件", "*.*")])
         if path:
@@ -585,7 +452,8 @@ class MergeTool(ToolWindowBase):
     def _pick_audio(self):
         path = filedialog.askopenfilename(
             title="选择音频文件",
-            filetypes=[("音频文件", "*.mp3 *.m4a *.aac *.wav *.flac *.ogg *.opus *.wma"),
+            parent=self.win,
+            filetypes=[("音频文件", "*.mp3 *.m4a *.aac *.wav *.flac *.ogg *.opus *.wma *.weba"),
                        ("所有文件", "*.*")])
         if path:
             self.audio_var.set(path)
@@ -594,7 +462,8 @@ class MergeTool(ToolWindowBase):
         initial = self.outdir_var.get().strip() or ""
         if not os.path.isdir(initial):
             initial = DEFAULT_DIR
-        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial)
+        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial,
+                                       parent=self.win)
         if path:
             self.outdir_var.set(path)
 
@@ -669,6 +538,7 @@ class ExtractTool(ToolWindowBase):
     def _pick_video(self):
         path = filedialog.askopenfilename(
             title="选择视频文件",
+            parent=self.win,
             filetypes=[("视频文件", "*.mp4 *.mkv *.mov *.avi *.webm *.flv *.ts *.m4v *.mpg *.wmv"),
                        ("所有文件", "*.*")])
         if path:
@@ -680,7 +550,8 @@ class ExtractTool(ToolWindowBase):
         initial = self.outdir_var.get().strip() or ""
         if not os.path.isdir(initial):
             initial = DEFAULT_DIR
-        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial)
+        path = filedialog.askdirectory(title="选择输出文件夹", initialdir=initial,
+                                       parent=self.win)
         if path:
             self.outdir_var.set(path)
 
@@ -821,7 +692,7 @@ class QueueWindow:
 class VideoDownloaderApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("视频下载器")
+        self.root.title(f"视频下载器 v{VERSION}")
         self.root.geometry("640x360")
         self.root.resizable(False, False)
 
@@ -830,20 +701,31 @@ class VideoDownloaderApp:
         if not os.path.isdir(saved_dir):
             saved_dir = DEFAULT_DIR
 
+        self.proxy = self.config.get("proxy") or _detect_proxy()
+        if self.proxy:
+            file_logger.info(f"使用代理: {self.proxy}")
+        else:
+            file_logger.warning("未检测到代理，可能无法连接 YouTube")
+
         self.downloading = False
         self.total_bytes = 0
         self.downloaded_bytes = 0
         self.speed = 0.0
         self.bar_animated = False
-        self.last_browser_ok = None
         self.queue = []
         self.current_url = None
         self.queue_win = None
+        self.cancel_event = threading.Event()
         self.dir_var = tk.StringVar(value=saved_dir)
 
         self._build_ui()
         self._update_queue_ui()
         self._center_window()
+        if self.proxy:
+            self._log(f"使用代理: {self.proxy}")
+        else:
+            self._log("未检测到代理，可能无法连接 YouTube", "WARNING")
+        threading.Thread(target=self._start_pot_provider, daemon=True).start()
 
     def _center_window(self):
         self.root.update_idletasks()
@@ -890,6 +772,10 @@ class VideoDownloaderApp:
         self.resume_btn.pack(side="left", padx=4)
         self.queue_btn = ttk.Button(btn_row, text="下载队列 (0)", command=self._open_queue)
         self.queue_btn.pack(side="left", padx=4)
+        ttk.Button(btn_row, text="更换 Cookie", command=self._choose_cookies).pack(side="left", padx=4)
+        self.cancel_btn = ttk.Button(btn_row, text="取消任务", command=self._cancel_current,
+                                     state="disabled")
+        self.cancel_btn.pack(side="left", padx=4)
 
         self.progress = ttk.Progressbar(self.root, mode="determinate")
         self.progress.pack(fill="x", padx=10, pady=12)
@@ -902,13 +788,22 @@ class VideoDownloaderApp:
 
     # ---------- 队列 ----------
 
+    def _queue_window_alive(self):
+        if self.queue_win is None:
+            return False
+        try:
+            return bool(self.queue_win.win.winfo_exists())
+        except tk.TclError:
+            self.queue_win = None
+            return False
+
     def _update_queue_ui(self):
         self.queue_btn.config(text=f"下载队列 ({len(self.queue)})")
-        if self.queue_win is not None and self.queue_win.winfo_exists():
+        if self._queue_window_alive():
             self.queue_win.refresh()
 
     def _open_queue(self):
-        if self.queue_win is not None and self.queue_win.winfo_exists():
+        if self._queue_window_alive():
             self.queue_win.win.lift()
             self.queue_win.refresh()
             return
@@ -922,7 +817,6 @@ class VideoDownloaderApp:
         if not self.dir_var.get().strip():
             messagebox.showwarning("提示", "请选择保存目录")
             return
-        self.url_var.set("")
         self.queue.append(url)
         if self.downloading:
             self._log(f"已加入队列({len(self.queue)}): {url}")
@@ -940,7 +834,12 @@ class VideoDownloaderApp:
             return
         url = self.queue.pop(0)
         self._update_queue_ui()
-        self._start_download(url)
+        try:
+            self._start_download(url)
+        except Exception as e:
+            file_logger.error(f"启动下载失败: {e}")
+            self._log(f"启动下载失败: {e}", "ERROR")
+            self._on_finish(False, f"错误: 启动下载失败: {e}")
 
     # ---------- 下载 ----------
 
@@ -950,6 +849,33 @@ class VideoDownloaderApp:
             self.dir_var.set(path)
             self.config["download_dir"] = path
             _save_config(self.config)
+
+    def _cancel_current(self):
+        if not self.downloading:
+            return
+        self.cancel_event.set()
+        self.cancel_btn.config(state="disabled")
+        self._log("正在取消当前任务...", "WARNING")
+
+    def _choose_cookies(self):
+        saved = self.config.get("cookie_dir") or os.path.dirname(os.path.abspath(__file__))
+        if not os.path.isdir(saved):
+            saved = os.path.dirname(os.path.abspath(__file__))
+        path = filedialog.askopenfilename(
+            title="选择 cookie 文件 (Netscape 格式)",
+            filetypes=[("Cookie 文件", "*.txt"), ("所有文件", "*.*")],
+            initialdir=saved)
+        if not path:
+            return
+        self.config["cookie_dir"] = os.path.dirname(path)
+        _save_config(self.config)
+        target, copy_err = self._update_cookies(path)
+        if copy_err:
+            self._log(f"复制 cookie 失败: {copy_err}", "ERROR")
+            messagebox.showerror("错误", f"复制 cookie 失败:\n{copy_err}")
+            return
+        self._log(f"已更新 cookie 文件: {target}")
+        messagebox.showinfo("成功", f"Cookie 已更新，下次下载将自动使用:\n{target}")
 
     def _remember_dir(self):
         outdir = self.dir_var.get().strip()
@@ -965,6 +891,8 @@ class VideoDownloaderApp:
         self.log_text.config(state="disabled")
 
     def _progress_hook(self, d):
+        if self.cancel_event.is_set():
+            raise DownloadCancelled("用户取消下载")
         self._schedule_ui(self._on_progress_ui, d)
 
     def _on_progress_ui(self, d):
@@ -1013,27 +941,24 @@ class VideoDownloaderApp:
         self.downloading = False
         self.current_url = None
         self.download_btn.config(state="normal")
+        self.cancel_btn.config(state="disabled")
         if self.bar_animated:
             self.bar_animated = False
             self.progress.stop()
             self.progress.config(mode="determinate")
         if success:
-            self.url_var.set("")
             self.resume_btn.config(state="disabled")
             self.progress["value"] = 100
             self.status_var.set("下载完成")
             self._log(msg)
             self._remember_dir()
-            if self.last_browser_ok:
-                self.config["cookies_browser"] = self.last_browser_ok
-                _save_config(self.config)
-                self._log(f"已记住 cookie 来源浏览器: {self.last_browser_ok}")
         else:
             self.resume_btn.config(state="normal")
             self.progress["value"] = 0
-            self.status_var.set("下载失败")
-            self._log(msg, "ERROR")
-            self._log("可点击「继续下载」重试，将自动断点续传")
+            self.status_var.set("已取消" if msg == "已取消下载" else "下载失败")
+            self._log(msg, "INFO" if msg == "已取消下载" else "ERROR")
+            if msg != "已取消下载":
+                self._log("可点击「继续下载」重试，将自动断点续传")
         self._update_queue_ui()
         self._pump_queue()
 
@@ -1046,36 +971,50 @@ class VideoDownloaderApp:
         "failed to decrypt", "dpapi", "could not copy",
         "cookie database", "is locked", "locked by the browser",
     )
-    BROWSER_CANDIDATES = (
-        ("chrome", (r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-                    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")),
-        ("edge", (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-                  r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")),
-        ("firefox", (r"C:\Program Files\Mozilla Firefox\firefox.exe",
-                     r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe")),
-        ("brave", (r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe",)),
-        ("opera", (r"C:\Program Files\Opera\launcher.exe",)),
-    )
 
-    @staticmethod
-    def _detect_browser():
-        for name, paths in VideoDownloaderApp.BROWSER_CANDIDATES:
-            if any(os.path.isfile(p) for p in paths) or shutil.which(name):
-                return name
-        return None
+    # ---------- PO Token provider (bgutil) ----------
 
-    @staticmethod
-    def _is_browser_running(name):
-        exe = {"chrome": "chrome.exe", "edge": "msedge.exe", "firefox": "firefox.exe",
-               "brave": "brave.exe", "opera": "opera.exe"}.get(name)
-        if not exe:
+    def _pot_provider_alive(self):
+        try:
+            with socket.create_connection(("127.0.0.1", POT_PROVIDER_PORT), timeout=1):
+                return True
+        except OSError:
+            return False
+
+    def _start_pot_provider(self):
+        """启动 bgutil PO Token provider 服务(若已安装且未运行)，返回是否可用"""
+        if self._pot_provider_alive():
+            return True
+        deno = _find_deno()
+        server_dir = next((d for d in POT_PROVIDER_CANDIDATES
+                           if os.path.isdir(os.path.join(d, "node_modules"))), None)
+        if not deno or not server_dir:
+            self._schedule_ui(self._log,
+                              "未找到 PO Token provider (bgutil)，年龄限制视频可能仅 360P",
+                              "WARNING")
             return False
         try:
-            out = subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {exe}"],
-                                 capture_output=True, text=True, timeout=10)
-            return exe.lower() in out.stdout.lower()
-        except (OSError, subprocess.TimeoutExpired):
+            env = dict(os.environ)
+            if self.proxy:
+                env["http_proxy"] = self.proxy
+                env["https_proxy"] = self.proxy
+            subprocess.Popen(
+                [deno, "run", "--allow-env", "--allow-net", "--allow-ffi=.",
+                 "--allow-read=.", os.path.join("..", "src", "main.ts")],
+                cwd=os.path.join(server_dir, "node_modules"),
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                env=env,
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        except OSError as e:
+            file_logger.error(f"启动 PO Token provider 失败: {e}")
             return False
+        for _ in range(30):
+            if self._pot_provider_alive():
+                self._schedule_ui(self._log,
+                                  "PO Token provider 已启动，可解锁年龄限制视频高画质")
+                return True
+            time.sleep(0.5)
+        return False
 
     def _default_cookies_path(self):
         return os.path.join(os.path.dirname(os.path.abspath(__file__)), "cookies.txt")
@@ -1093,8 +1032,22 @@ class VideoDownloaderApp:
         msg = str(err).lower()
         return any(k in msg for k in VideoDownloaderApp.AUTH_HINT_KEYWORDS)
 
-    def _download_worker(self, url, outdir, cookies=None, browser=None,
-                         tried_browsers=None, auth_stage=0, cdp_tried=False):
+    @staticmethod
+    def _selected_height(info):
+        heights = [f.get("height") or 0 for f in info.get("requested_formats") or []
+                   if f.get("vcodec") and f.get("vcodec") != "none"]
+        return max(heights) if heights else (info.get("height") or 0)
+
+    def _cleanup_files(self, info):
+        for dl in info.get("requested_downloads") or []:
+            fp = dl.get("filepath")
+            if fp and os.path.exists(fp):
+                try:
+                    os.remove(fp)
+                except OSError:
+                    pass
+
+    def _download_worker(self, url, outdir, cookies=None, safari=False):
         output_template = os.path.join(outdir, "%(title)s [%(height)sp].%(ext)s")
         opts = {
             "outtmpl": output_template,
@@ -1104,138 +1057,57 @@ class VideoDownloaderApp:
             "continuedl": True,
             "concurrent_fragment_downloads": CONCURRENT_FRAGMENTS,
             "progress_hooks": [self._progress_hook],
-            "socket_timeout": 30,
-            "retries": 5,
+            "socket_timeout": 15,
+            "retries": 3,
             "quiet": True,
             "no_warnings": True,
         }
+        if safari:
+            opts["extractor_args"] = {"youtube": ["player_client=web_safari"]}
+        if self.proxy:
+            opts["proxy"] = self.proxy
         aria2c = _find_aria2c()
         if aria2c:
             opts["external_downloader"] = "aria2c"
             opts["external_downloader_args"] = {"aria2c": ["-x", "16", "-s", "16", "-k", "1M"]}
-        if browser:
-            opts["cookiesfrombrowser"] = (browser,)
-        elif cookies:
+        if cookies:
             opts["cookiefile"] = cookies
         try:
             with yt_dlp.YoutubeDL(opts) as ydl:
                 info = ydl.extract_info(url, download=True)
-            title = info.get("title", url)
-            height = info.get("height")
-            if browser:
-                self.last_browser_ok = browser
-            self._schedule_ui(self._on_finish, True,
-                              f"已下载: {title}"
-                              + (f" ({height}p)" if height else "")
-                              + f"\n保存至: {outdir}")
+        except DownloadCancelled:
+            self._schedule_ui(self._on_finish, False, "已取消下载")
+            return
         except Exception as e:
             if self._is_auth_error(e):
-                tried = list(tried_browsers or [])
-                if browser:
-                    tried.append(browser)
-                if auth_stage in (0, 1):
-                    nxt = self._next_browser(tried)
-                    if nxt:
-                        self._schedule_ui(self._auto_retry_browser,
-                                          url, outdir, nxt, str(e), tried + [nxt], 1)
-                    else:
-                        self._schedule_ui(self._after_browsers,
-                                          url, outdir, str(e), cdp_tried)
-                else:
-                    self._schedule_ui(self._give_up_auth, url, str(e))
+                self._schedule_ui(self._ask_cookie_retry, url, outdir, str(e))
             else:
                 self._schedule_ui(self._on_finish, False, f"错误: {e}")
+            return
+        height = self._selected_height(info)
+        if (not safari and (info.get("age_limit") or 0) > 0 and height <= 360):
+            file_logger.info(f"年龄限制视频仅提供 {height}p，改用 web_safari 客户端重试: {url}")
+            self._cleanup_files(info)
+            self._schedule_ui(self._log,
+                              f"检测到年龄限制视频默认仅提供 {height}p，"
+                              "正在使用备用客户端获取更高画质...", "WARNING")
+            self._schedule_ui(self._download_worker, url, outdir, cookies, True)
+            return
+        title = info.get("title", url)
+        self._schedule_ui(self._on_finish, True,
+                          f"已下载: {title}"
+                          + (f" ({height}p)" if height else "")
+                          + f"\n保存至: {outdir}")
 
-    @staticmethod
-    def _next_browser(tried):
-        """返回下一个已安装、未尝试过、且当前未运行的浏览器"""
-        for name, paths in VideoDownloaderApp.BROWSER_CANDIDATES:
-            if name in tried:
-                continue
-            if not (any(os.path.isfile(p) for p in paths) or shutil.which(name)):
-                continue
-            if VideoDownloaderApp._is_browser_running(name):
-                continue
-            return name
-        return None
-
-    def _auto_retry_browser(self, url, outdir, browser, err_msg, tried, stage):
-        lower = err_msg.lower()
-        if "failed to decrypt" in lower or "dpapi" in lower:
-            self._log(f"浏览器 {browser} 使用新版 App-Bound 加密，yt-dlp 无法自动解密其 cookie",
-                      "WARNING")
-            self._log("提示: 安装 Firefox 并登录该网站，即可实现自动获取 cookie", "WARNING")
-        elif self._is_browser_running(browser):
-            self._log(f"浏览器 {browser} 正在运行，cookie 数据库被锁定，跳过", "WARNING")
-        else:
-            self._log(f"尝试从浏览器 {browser} 自动获取 cookie", "WARNING")
-        self.status_var.set(f"从 {browser} 自动获取 cookie...")
-        threading.Thread(target=self._download_worker,
-                         args=(url, outdir, None, browser, tried, stage),
-                         daemon=True).start()
-
-    def _after_browsers(self, url, outdir, err_msg, cdp_tried):
-        """浏览器全部失败后: 优先 Chrome CDP 自动获取, 否则手动选择"""
-        if (not cdp_tried and _find_chrome() and websocket is not None
-                and self.config.get("cookies_cdp", True)):
-            self._auto_retry_cdp(url, outdir, err_msg)
-        else:
-            self._ask_cookie_retry(url, outdir, err_msg, 2)
-
-    def _auto_retry_cdp(self, url, outdir, err_msg):
-        self.status_var.set("通过 Chrome 自动获取 cookie...")
-        self._log("尝试通过 Chrome (CDP) 自动获取 cookie", "WARNING")
-        if not self.config.get("cdp_logged_in"):
-            self._log("首次使用: 将弹出 Chrome 窗口，请在其中登录 YouTube 一次，"
-                      "之后即可全自动更新 cookie", "WARNING")
-        threading.Thread(target=self._cdp_worker,
-                         args=(url, outdir, err_msg), daemon=True).start()
-
-    def _cdp_worker(self, url, outdir, err_msg):
-        try:
-            fetcher = ChromeCookieFetcher()
-            ok, msg = fetcher.fetch(
-                on_need_login=lambda: self._schedule_ui(
-                    self._log,
-                    "请在弹出的 Chrome 窗口中登录 YouTube，"
-                    "登录完成后关闭该窗口，程序将自动继续...",
-                    "WARNING"))
-            if not ok:
-                self._schedule_ui(self._ask_cookie_retry,
-                                  url, outdir,
-                                  f"{err_msg}\n(Chrome 自动获取失败: {msg})", 2)
-                return
-            self.config["cdp_logged_in"] = True
-            _save_config(self.config)
-            self._schedule_ui(self._log, f"已通过 Chrome 自动获取 cookie: {fetcher.target}")
-            self._schedule_ui(self._download_worker,
-                              url, outdir, fetcher.target, None, [], 2, True)
-        except Exception as e:
-            file_logger.error(f"CDP cookie 获取异常: {e}")
-            self._schedule_ui(self._ask_cookie_retry,
-                              url, outdir,
-                              f"{err_msg}\n(Chrome 自动获取异常: {e})", 2)
-
-    def _give_up_auth(self, url, err_msg):
-        self._log("浏览器 cookie 与手动 cookie 均尝试失败", "ERROR")
-        messagebox.showwarning(
-            "自动获取失败",
-            f"已自动尝试浏览器 cookie，仍无法通过验证:\n\n{err_msg}\n\n"
-            "原因可能:\n"
-            "1. Chrome CDP 自动获取时浏览器未登录\n"
-            "2. 新版 Chrome/Edge 使用 App-Bound 加密，yt-dlp 无法直接读取\n\n"
-            "建议: 用 Chrome 打开 YouTube 并登录后重试（程序会自动获取 cookie）；\n"
-            "或手动选择 cookie 文件。")
-        self._on_finish(False, f"错误: {err_msg}")
-
-    def _ask_cookie_retry(self, url, outdir, err_msg, auth_stage=2):
+    def _ask_cookie_retry(self, url, outdir, err_msg):
         self.status_var.set("需要登录验证 (cookie)")
-        self._log(f"需要登录验证，请求选择 cookie: {url}", "WARNING")
+        self._log(f"cookie 无效或已过期，需要手动指定 cookie 文件: {url}", "WARNING")
         choice = messagebox.askyesno(
             "需要登录验证",
-            f"视频需要登录/验证，当前 cookie 无效或缺失:\n\n{err_msg}\n\n"
-            "是否选择 cookie 文件后重试？"
-            "\n(可从浏览器导出 Netscape 格式 cookies.txt)")
+            f"视频需要登录/验证，当前 cookie 无效或已过期:\n\n{err_msg}\n\n"
+            "是否手动选择有效的 cookie 文件后重试？\n"
+            "(注意: 导出工具需包含 SID/HSID/__Secure-3PSID 等登录会话 cookie，\n"
+            "否则即使导出成功也只会被 YouTube 当作未登录)")
         if not choice:
             self._on_finish(False, f"错误: {err_msg}")
             return
@@ -1258,7 +1130,7 @@ class VideoDownloaderApp:
             return
         self._log(f"已更新 cookie 文件: {target}")
         threading.Thread(target=self._download_worker,
-                         args=(url, outdir, target, None, [], auth_stage), daemon=True).start()
+                         args=(url, outdir, target), daemon=True).start()
 
     def _schedule_ui(self, func, *args):
         self.root.after(0, lambda: func(*args))
@@ -1306,7 +1178,8 @@ class VideoDownloaderApp:
             return False, "ffmpeg 返回错误"
         return True, ""
 
-    def _rotate_worker(self, tw, path, angle, out):
+    def _rotate_one(self, tw, path, angle, out):
+        """旋转单个文件，返回 (ok, err)"""
         ffmpeg = _find_ffmpeg()
         vf = {90: "transpose=1", 180: "vflip,hflip", 270: "transpose=2"}[angle]
         duration = self._probe_duration(path)
@@ -1334,10 +1207,30 @@ class VideoDownloaderApp:
                     "-c:v"] + vc + ["-pix_fmt", "yuv420p", "-c:a", "copy",
                                     "-progress", "pipe:1", "-nostats", out])
             ok, err = self._run_rotate(cmd, duration, out, tw)
-        if ok:
-            tw._schedule(tw.finish, True, f"旋转完成: {out}")
+        return ok, err
+
+    def _rotate_worker(self, tw, tasks, angle):
+        """队列式旋转多个文件，逐条执行"""
+        total = len(tasks)
+        ok_count = 0
+        failed = []
+        for i, (path, out) in enumerate(tasks, 1):
+            if tw.closed:
+                return
+            tw._schedule(tw.log, f"[{i}/{total}] 开始旋转: {os.path.basename(path)}")
+            tw._schedule(tw.set_status, f"处理中 {i}/{total}: {os.path.basename(path)}")
+            ok, err = self._rotate_one(tw, path, angle, out)
+            if ok:
+                ok_count += 1
+                tw._schedule(tw.log, f"[{i}/{total}] 完成: {out}")
+            else:
+                failed.append(path)
+                tw._schedule(tw.log, f"[{i}/{total}] 失败: {err}\n{path}", "ERROR")
+        if failed:
+            tw._schedule(tw.finish, False,
+                         f"旋转完成 {ok_count}/{total}，失败 {len(failed)} 个")
         else:
-            tw._schedule(tw.finish, False, f"旋转失败: {err}\n{path}")
+            tw._schedule(tw.finish, True, f"旋转完成: {ok_count}/{total} 个文件")
 
     # ---------- 音视频合并 ----------
 
@@ -1427,6 +1320,8 @@ class VideoDownloaderApp:
 
         self.downloading = True
         self.current_url = url
+        self.cancel_event.clear()
+        self.cancel_btn.config(state="normal")
         self.resume_btn.config(state="disabled")
         self.progress.stop()
         self.progress.config(mode="indeterminate")
@@ -1437,13 +1332,8 @@ class VideoDownloaderApp:
         self.status_var.set("分析视频信息中...")
         self._log(f"开始下载: {url}")
         self._log(f"保存目录: {outdir}")
-        self.last_browser_ok = None
-        browser = self.config.get("cookies_browser") or ""
         cookies = self._default_cookies_path()
-        if browser and self._detect_browser() is not None:
-            self._log(f"使用浏览器 cookie: {browser}")
-            cookies = None
-        elif os.path.isfile(cookies):
+        if os.path.isfile(cookies):
             self._log(f"已加载 cookie: {cookies}")
         else:
             cookies = None
@@ -1456,11 +1346,11 @@ class VideoDownloaderApp:
             self._log(f"发现 {len(parts)} 个未完成的分片文件，将自动断点续传")
 
         threading.Thread(target=self._download_worker,
-                         args=(url, outdir, cookies, browser or None), daemon=True).start()
+                         args=(url, outdir, cookies), daemon=True).start()
 
 
 def main():
-    file_logger.info(f"程序启动 (yt-dlp {yt_dlp.version.__version__})")
+    file_logger.info(f"程序启动 (v{VERSION}, yt-dlp {yt_dlp.version.__version__})")
     root = tk.Tk()
     VideoDownloaderApp(root)
     root.mainloop()

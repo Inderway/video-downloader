@@ -1,0 +1,31 @@
+[2026-08-31 19:06:00] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1WAwxzPExa/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 19:06:00] [INFO] 开始下载: https://www.bilibili.com/video/BV1WAwxzPExa/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 19:06:00] [INFO] 保存目录: I:/downloads
+[2026-08-31 19:06:00] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 19:06:05] [INFO] 已下载: 【米汀Nagisa/灰泽满Hazel】最强萌音的《小幸运》 (1080p)
+保存至: I:/downloads
+[2026-08-31 19:06:40] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/“待上浓妆好戏开场，台上悲欢皆我独吟唱”—《难却》 [1080p].mp4
+[2026-08-31 19:06:40] [INFO] 输出: I:/downloads\“待上浓妆好戏开场，台上悲欢皆我独吟唱”—《难却》 [1080p].mp3
+[2026-08-31 19:06:41] [INFO] 音频提取完成: I:/downloads\“待上浓妆好戏开场，台上悲欢皆我独吟唱”—《难却》 [1080p].mp3
+[2026-08-31 19:06:46] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/【ニコカラ】1991年的活全家哈基米音乐【On ⧸ Off Vocal】 p01 On Vocal [720p].mp4
+[2026-08-31 19:06:46] [INFO] 输出: I:/downloads\【ニコカラ】1991年的活全家哈基米音乐【On ⧸ Off Vocal】 p01 On Vocal [720p].mp3
+[2026-08-31 19:06:46] [INFO] 音频提取完成: I:/downloads\【ニコカラ】1991年的活全家哈基米音乐【On ⧸ Off Vocal】 p01 On Vocal [720p].mp3
+[2026-08-31 19:06:51] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/【阿梓歌】《若梦》（2024.6.4） [1080p].mp4
+[2026-08-31 19:06:51] [INFO] 输出: I:/downloads\【阿梓歌】《若梦》（2024.6.4） [1080p].mp3
+[2026-08-31 19:06:53] [INFO] 音频提取完成: I:/downloads\【阿梓歌】《若梦》（2024.6.4） [1080p].mp3
+[2026-08-31 19:06:56] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/【纯享收藏级】周深《起风了》 [1080p].mp4
+[2026-08-31 19:06:56] [INFO] 输出: I:/downloads\【纯享收藏级】周深《起风了》 [1080p].mp3
+[2026-08-31 19:06:59] [INFO] 音频提取完成: I:/downloads\【纯享收藏级】周深《起风了》 [1080p].mp3
+[2026-08-31 19:07:03] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/【洛天依乐正绫原创】白石溪【2025官方重置版】 [1080p].mp4
+[2026-08-31 19:07:03] [INFO] 输出: I:/downloads\【洛天依乐正绫原创】白石溪【2025官方重置版】 [1080p].mp3
+[2026-08-31 19:07:05] [INFO] 音频提取完成: I:/downloads\【洛天依乐正绫原创】白石溪【2025官方重置版】 [1080p].mp3
+[2026-08-31 19:07:12] [INFO] 开始提取音频 (MP3 320kbps): I:/downloads/【米汀Nagisa⧸灰泽满Hazel】最强萌音的《小幸运》 [1080p].mp4
+[2026-08-31 19:07:12] [INFO] 输出: I:/downloads\【米汀Nagisa⧸灰泽满Hazel】最强萌音的《小幸运》 [1080p].mp3
+[2026-08-31 19:07:14] [INFO] 音频提取完成: I:/downloads\【米汀Nagisa⧸灰泽满Hazel】最强萌音的《小幸运》 [1080p].mp3
+[2026-08-31 19:16:49] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-31 19:16:55] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=FLhMJTKTM3U
+[2026-08-31 19:16:55] [INFO] 开始下载: https://www.youtube.com/watch?v=FLhMJTKTM3U
+[2026-08-31 19:16:55] [INFO] 保存目录: I:/downloads
+[2026-08-31 19:16:55] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 19:17:16] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (3372p)
+保存至: I:/downloads

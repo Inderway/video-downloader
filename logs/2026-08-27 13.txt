@@ -1,0 +1,56 @@
+[2026-08-27 13:04:03] [INFO] 程序启动 (v1.0.0, yt-dlp 2026.08.19)
+[2026-08-27 13:04:14] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=1DC_onO0Vx0
+[2026-08-27 13:04:14] [INFO] 开始下载: https://www.youtube.com/watch?v=1DC_onO0Vx0
+[2026-08-27 13:04:14] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:04:14] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:04:14] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 13:04:29] [INFO] 已加入队列(1): https://www.youtube.com/watch?v=04EodIGP4n8
+[2026-08-27 13:04:39] [INFO] 已加入队列(2): https://www.youtube.com/watch?v=heGHV6IYC6E
+[2026-08-27 13:04:46] [INFO] 已下载: 手機豎屏觀看版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 135mm f1.8 GM ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:04:46] [INFO] 开始下载: https://www.youtube.com/watch?v=04EodIGP4n8
+[2026-08-27 13:04:46] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:04:46] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:04:55] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 35mm f1.8 ╳ SONY A7M3 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:04:55] [INFO] 开始下载: https://www.youtube.com/watch?v=heGHV6IYC6E
+[2026-08-27 13:04:55] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:04:55] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:05:12] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:12:03] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=A9OvJkjD63o
+[2026-08-27 13:12:03] [INFO] 开始下载: https://www.youtube.com/watch?v=A9OvJkjD63o
+[2026-08-27 13:12:03] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:12:03] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:12:30] [INFO] 已下载: AMAZONE MAISON CLOSE 2024 - 4K 60FPS (2160p)
+保存至: I:/downloads
+[2026-08-27 13:19:50] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=m22v4BwF0WM
+[2026-08-27 13:19:50] [INFO] 开始下载: https://www.youtube.com/watch?v=m22v4BwF0WM
+[2026-08-27 13:19:50] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:19:50] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:20:14] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:25:38] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=m22v4BwF0WM
+[2026-08-27 13:25:38] [INFO] 开始下载: https://www.youtube.com/watch?v=m22v4BwF0WM
+[2026-08-27 13:25:38] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:25:38] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:25:39] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:26:03] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=04EodIGP4n8
+[2026-08-27 13:26:03] [INFO] 开始下载: https://www.youtube.com/watch?v=04EodIGP4n8
+[2026-08-27 13:26:03] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:26:03] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:26:05] [INFO] 已下载: 手機豎屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 35mm f1.8 ╳ SONY A7M3 (3266p)
+保存至: I:/downloads
+[2026-08-27 13:26:15] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=TpQCjM9fyuo
+[2026-08-27 13:26:15] [INFO] 开始下载: https://www.youtube.com/watch?v=TpQCjM9fyuo
+[2026-08-27 13:26:15] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:26:15] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:26:40] [INFO] 已下载: 電視寬屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 28-70mm f2 ╳ EOS R6 II ╳ Sigma 40mm f1.4 ART ╳ SONY A7M4 (2160p)
+保存至: I:/downloads
+[2026-08-27 13:27:16] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=jY8aRaMSYcg
+[2026-08-27 13:27:16] [INFO] 开始下载: https://www.youtube.com/watch?v=jY8aRaMSYcg
+[2026-08-27 13:27:16] [INFO] 保存目录: I:/downloads
+[2026-08-27 13:27:16] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 13:27:32] [INFO] 已下载: 電視寬屏版 ╳ 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ Canon RF 85mm f1.2 ╳ EOS R5 ╳ FE 35mm f1.8 ╳ SONY A7M3 (2160p)
+保存至: I:/downloads

@@ -1,0 +1,40 @@
+[2026-08-31 18:45:51] [INFO] 程序启动 (v1.1.5, yt-dlp 2026.08.19)
+[2026-08-31 18:45:51] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-31 18:45:51] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-31 18:46:02] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1EJ2aYVEnG/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:46:02] [INFO] 开始下载: https://www.bilibili.com/video/BV1EJ2aYVEnG/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:46:02] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:46:02] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:46:04] [INFO] 已下载: “待上浓妆好戏开场，台上悲欢皆我独吟唱”—《难却》 (480p)
+保存至: I:/downloads
+[2026-08-31 18:47:08] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:47:11] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1EJ2aYVEnG/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:47:11] [INFO] 开始下载: https://www.bilibili.com/video/BV1EJ2aYVEnG/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:47:11] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:47:11] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:47:13] [INFO] 已下载: “待上浓妆好戏开场，台上悲欢皆我独吟唱”—《难却》 (1080p)
+保存至: I:/downloads
+[2026-08-31 18:54:05] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1Jt421K79b/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:54:05] [INFO] 开始下载: https://www.bilibili.com/video/BV1Jt421K79b/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:54:05] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:54:05] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:54:08] [INFO] 已下载: 【阿梓歌】《若梦》（2024.6.4） (1080p)
+保存至: I:/downloads
+[2026-08-31 18:56:59] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1Yv411B7Kh/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:56:59] [INFO] 开始下载: https://www.bilibili.com/video/BV1Yv411B7Kh/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:56:59] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:56:59] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:57:04] [INFO] 已下载: 【纯享收藏级】周深《起风了》 (1080p)
+保存至: I:/downloads
+[2026-08-31 18:57:38] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV19mAwe8EEf/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:57:38] [INFO] 开始下载: https://www.bilibili.com/video/BV19mAwe8EEf/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:57:38] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:57:38] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:57:40] [INFO] 已下载: 【ニコカラ】1991年的活全家哈基米音乐【On / Off Vocal】 p01 On Vocal (720p)
+保存至: I:/downloads
+[2026-08-31 18:59:33] [INFO] 加入队列，即将开始: https://www.bilibili.com/video/BV1mNbyzfEMu/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:59:33] [INFO] 开始下载: https://www.bilibili.com/video/BV1mNbyzfEMu/?spm_id_from=333.1387.favlist.content.click&vd_source=107e39ff01fb6d7fbf706300749f0d9d
+[2026-08-31 18:59:33] [INFO] 保存目录: I:/downloads
+[2026-08-31 18:59:33] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-31 18:59:37] [INFO] 已下载: 【洛天依乐正绫原创】白石溪【2025官方重置版】 (1080p)
+保存至: I:/downloads

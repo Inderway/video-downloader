@@ -1,0 +1,148 @@
+[2026-08-27 21:04:47] [INFO] 程序启动 (v1.1.2, yt-dlp 2026.08.19)
+[2026-08-27 21:04:47] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:04:47] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:05:20] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:05:23] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=RbjEeAFGzlQ
+[2026-08-27 21:05:23] [INFO] 开始下载: https://www.youtube.com/watch?v=RbjEeAFGzlQ
+[2026-08-27 21:05:23] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:05:23] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:05:23] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:06:02] [INFO] 已下载: 4K 2024廣州國際車展 HONDA 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 030 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:06:23] [INFO] 开始旋转: I:/downloads/4K 2024廣州國際車展 HONDA 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 030 [2160p].mp4 (90° 顺时针)
+[2026-08-27 21:06:23] [INFO] 输出: I:/downloads\4K 2024廣州國際車展 HONDA 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 030 [2160p]_rot90.mp4
+[2026-08-27 21:06:23] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:06:37] [INFO] 旋转完成: I:/downloads\4K 2024廣州國際車展 HONDA 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 030 [2160p]_rot90.mp4
+[2026-08-27 21:07:29] [INFO] 开始合并:
+视频: I:/downloads/Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography [360p].mp4
+音频: I:/downloads/Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography [360p].weba
+输出: I:/downloads\Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography [360p]_merged.mp4
+[2026-08-27 21:07:30] [INFO] 合并完成: I:/downloads\Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography [360p]_merged.mp4
+[2026-08-27 21:07:47] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=iZg1vfWGSH0
+[2026-08-27 21:07:47] [INFO] 开始下载: https://www.youtube.com/watch?v=iZg1vfWGSH0
+[2026-08-27 21:07:47] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:07:47] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:07:47] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:09:37] [ERROR] 错误: [0;31mERROR:[0m [youtube] iZg1vfWGSH0: Unable to download API page: _ssl.c:1000: The handshake operation timed out (caused by TransportError('_ssl.c:1000: The handshake operation timed out'))
+[2026-08-27 21:09:37] [INFO] 可点击「继续下载」重试，将自动断点续传
+[2026-08-27 21:10:37] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:10:44] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=iZg1vfWGSH0
+[2026-08-27 21:10:44] [INFO] 开始下载: https://www.youtube.com/watch?v=iZg1vfWGSH0
+[2026-08-27 21:10:44] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:10:44] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:10:44] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:11:22] [INFO] 已下载: 4K 2024成都國際車展 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 201 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:11:57] [INFO] 开始旋转: I:/downloads/4K 2024成都國際車展 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 201 [2160p].mp4 (90° 顺时针)
+[2026-08-27 21:11:57] [INFO] 输出: I:/downloads\4K 2024成都國際車展 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 201 [2160p]_rot90.mp4
+[2026-08-27 21:11:57] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:12:34] [INFO] 旋转完成: I:/downloads\4K 2024成都國際車展 網紅車模 레이싱모델 Beautyleg Racing Model #是你依然 201 [2160p]_rot90.mp4
+[2026-08-27 21:14:05] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=3ZLCrruCP0o
+[2026-08-27 21:14:05] [INFO] 开始下载: https://www.youtube.com/watch?v=3ZLCrruCP0o
+[2026-08-27 21:14:05] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:14:05] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:14:05] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:14:57] [INFO] 已下载: 2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模94 #是你依然 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:15:22] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=MYgf3zR4oD8
+[2026-08-27 21:15:22] [INFO] 开始下载: https://www.youtube.com/watch?v=MYgf3zR4oD8
+[2026-08-27 21:15:22] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:15:22] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:15:22] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:15:59] [INFO] 已下载: 2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模12 謝然#是你依然 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:16:49] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=yNzBXqjqx8U
+[2026-08-27 21:16:49] [INFO] 开始下载: https://www.youtube.com/watch?v=yNzBXqjqx8U
+[2026-08-27 21:16:49] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:16:49] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:16:49] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:17:21] [INFO] 已下载: 妍熙 Yan Xi (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2026 / 2026蘇州GTShow改裝車展 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:18:15] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=2CeihDPw0L0
+[2026-08-27 21:18:15] [INFO] 开始下载: https://www.youtube.com/watch?v=2CeihDPw0L0
+[2026-08-27 21:18:15] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:18:15] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:18:15] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:18:52] [INFO] 已下载: 是你依然 (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2025 / 2025蘇州GTShow改裝車展 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:19:28] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=aZ1Vhmn4N3w
+[2026-08-27 21:19:28] [INFO] 开始下载: https://www.youtube.com/watch?v=aZ1Vhmn4N3w
+[2026-08-27 21:19:28] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:19:28] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:19:28] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:20:13] [INFO] 已下载: 珍妮 Jenny (Racing Model 레이싱모델 RQ 車模) - 深圳改裝車展(寶安) Cool Car Show 2026 / 九州汽車生態博覽會 AUTOECOSYSTEMS (2160p)
+保存至: I:/downloads
+[2026-08-27 21:23:17] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=aZ1Vhmn4N3w
+[2026-08-27 21:23:17] [INFO] 开始下载: https://www.youtube.com/watch?v=aZ1Vhmn4N3w
+[2026-08-27 21:23:17] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:23:17] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:23:17] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:23:23] [INFO] 已下载: 珍妮 Jenny (Racing Model 레이싱모델 RQ 車模) - 深圳改裝車展(寶安) Cool Car Show 2026 / 九州汽車生態博覽會 AUTOECOSYSTEMS (2160p)
+保存至: I:/downloads
+[2026-08-27 21:32:21] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:32:21] [INFO] 开始下载: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:32:21] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:32:21] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:32:21] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:32:24] [WARNING] cookie 无效或已过期，需要手动指定 cookie 文件: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:32:36] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:32:54] [INFO] 已加入队列(1): https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:33:06] [INFO] 程序启动 (v1.1.2, yt-dlp 2026.08.19)
+[2026-08-27 21:33:06] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:33:06] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:33:11] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:33:11] [INFO] 开始下载: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:33:11] [INFO] 保存目录: I:/downloads
+[2026-08-27 21:33:11] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-27 21:33:11] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:33:34] [INFO] 已下载: 是你依然 (Racing Model 레이싱모델 RQ 車模) - 粵港澳大灣區車展 Innovative Auto Show 2026 / IAS 2026 / 深圳車展 (2160p)
+保存至: I:/downloads
+[2026-08-27 21:35:52] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:35:53] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:35:53] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:35:53] [INFO] 开始下载: https://www.youtube.com/watch?v=-sJW9AqJA3U
+[2026-08-27 21:35:53] [INFO] 保存目录: C:\Users\Admin\AppData\Local\Temp\opencode
+[2026-08-27 21:35:53] [INFO] 已加载 cookie: I:\github\video-downloader\cookies.txt
+[2026-08-27 21:35:53] [INFO] 发现 1 个未完成的分片文件，将自动断点续传
+[2026-08-27 21:36:01] [WARNING] 正在取消当前任务...
+[2026-08-27 21:36:06] [INFO] 已取消下载
+[2026-08-27 21:38:53] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:38:53] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:38:53] [INFO] 开始旋转 2 个文件 (90° 顺时针)
+[2026-08-27 21:38:53] [INFO] 输出目录: C:\Users\Admin\AppData\Local\Temp\opencode
+[2026-08-27 21:38:53] [INFO] [1/2] 开始旋转: rot_test1.mp4
+[2026-08-27 21:38:54] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:38:54] [INFO] [1/2] 完成: C:\Users\Admin\AppData\Local\Temp\opencode\rot_test1_rot90.mp4
+[2026-08-27 21:38:54] [INFO] [2/2] 开始旋转: rot_test2.mkv
+[2026-08-27 21:38:54] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:38:54] [INFO] [2/2] 完成: C:\Users\Admin\AppData\Local\Temp\opencode\rot_test2_rot90.mp4
+[2026-08-27 21:38:54] [INFO] 旋转完成: 2/2 个文件
+[2026-08-27 21:42:26] [INFO] 程序启动 (v1.1.4, yt-dlp 2026.08.19)
+[2026-08-27 21:42:26] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:42:26] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:42:43] [INFO] 程序启动 (v1.1.4, yt-dlp 2026.08.19)
+[2026-08-27 21:42:43] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:42:43] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:43:36] [INFO] 开始旋转 6 个文件 (90° 顺时针)
+[2026-08-27 21:43:36] [INFO] 输出目录: I:/downloads
+[2026-08-27 21:43:36] [INFO] [1/6] 开始旋转: 2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模12 謝然#是你依然 [2160p].mp4
+[2026-08-27 21:43:36] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:44:44] [INFO] [1/6] 完成: I:/downloads\2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模12 謝然#是你依然 [2160p]_rot90.mp4
+[2026-08-27 21:44:44] [INFO] [2/6] 开始旋转: 2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模94 #是你依然 [2160p].mp4
+[2026-08-27 21:44:44] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:46:03] [INFO] [2/6] 完成: I:/downloads\2025GTShow蘇州改裝展 Beautyleg Racing Queen 車模94 #是你依然 [2160p]_rot90.mp4
+[2026-08-27 21:46:03] [INFO] [3/6] 开始旋转: 是你依然 (Racing Model 레이싱모델 RQ 車模) - 粵港澳大灣區車展 Innovative Auto Show 2026 ⧸ IAS 2026 ⧸ 深圳車展 [2160p].mp4
+[2026-08-27 21:46:03] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:46:23] [INFO] [3/6] 完成: I:/downloads\是你依然 (Racing Model 레이싱모델 RQ 車模) - 粵港澳大灣區車展 Innovative Auto Show 2026 ⧸ IAS 2026 ⧸ 深圳車展 [2160p]_rot90.mp4
+[2026-08-27 21:46:23] [INFO] [4/6] 开始旋转: 是你依然 (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2025 ⧸ 2025蘇州GTShow改裝車展 [2160p].mp4
+[2026-08-27 21:46:23] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:46:45] [INFO] [4/6] 完成: I:/downloads\是你依然 (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2025 ⧸ 2025蘇州GTShow改裝車展 [2160p]_rot90.mp4
+[2026-08-27 21:46:45] [INFO] [5/6] 开始旋转: 妍熙 Yan Xi (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2026 ⧸ 2026蘇州GTShow改裝車展 [2160p].mp4
+[2026-08-27 21:46:45] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:47:10] [INFO] [5/6] 完成: I:/downloads\妍熙 Yan Xi (Racing Model 레이싱모델 RQ 網紅車模) - 蘇州改裝車展 Suzhou GTShow 2026 ⧸ 2026蘇州GTShow改裝車展 [2160p]_rot90.mp4
+[2026-08-27 21:47:10] [INFO] [6/6] 开始旋转: 珍妮 Jenny (Racing Model 레이싱모델 RQ 車模) - 深圳改裝車展(寶安) Cool Car Show 2026 ⧸ 九州汽車生態博覽會 AUTOECOSYSTEMS [2160p].mp4
+[2026-08-27 21:47:10] [INFO] 使用硬件编码: h264_nvenc
+[2026-08-27 21:47:26] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:47:27] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-27 21:47:31] [INFO] [6/6] 完成: I:/downloads\珍妮 Jenny (Racing Model 레이싱모델 RQ 車模) - 深圳改裝車展(寶安) Cool Car Show 2026 ⧸ 九州汽車生態博覽會 AUTOECOSYSTEMS [2160p]_rot90.mp4
+[2026-08-27 21:47:31] [INFO] 旋转完成: 6/6 个文件

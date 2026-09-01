@@ -11,12 +11,12 @@
   下移 (`↓`)、取消 (`Delete`，需确认)
 - **多线程加速**：DASH/HLS 分片 8 线程并行下载（YouTube/B 站等）；
   若系统装有 aria2c（`aria2c -x16`），单文件流也会并行下载
-- 断点续传 + 记忆保存目录 + **cookie 自动获取**（三级自动，无需手动换文件）：
-  1. 自动从浏览器提取 cookie（Firefox 可直读；新版 Chrome/Edge 的 App-Bound 加密无法直读）
-  2. **Chrome CDP**：让 Chrome 自己交出 cookie（浏览器自身解密，绕过加密限制）。
-     首次使用时弹出**普通 Chrome 窗口**（无任何调试参数，避免自动化检测），
-     在其中登录 YouTube 一次并关闭窗口，之后 cookie 过期全自动刷新
-  3. 全部失败才弹窗手动选择 cookie 文件
+- 断点续传 + 记忆保存目录 + cookie 管理：
+  - 下载自动使用程序目录下的 `cookies.txt`（Netscape 格式）
+  - 主页「更换 Cookie」按钮可手动选择新的 cookie 文件并覆盖
+  - cookie 失效时弹窗提示手动选择有效 cookie 文件后重试
+  - 可选：集成 [bgutil-ytdlp-pot-provider](https://github.com/Brainicism/bgutil-ytdlp-pot-provider)
+    （需 Node/Deno），自动为 YouTube 生成 PO Token，解锁年龄限制视频高画质
 
 ## 环境要求
 
@@ -38,5 +38,16 @@ python video_downloader.py
 3. 出错时点「继续下载」自动断点续传；cookie 失效时会弹出文件选择框并覆盖更新
 
 > 提示：部分站点（如 YouTube 1080p+）视频流与音频流分离，依赖 ffmpeg 合并；
-> 若遇需要登录/地区限制的视频，可在 `_download_worker` 的 `opts` 中追加
-> `"cookiesfrombrowser": ("chrome",)` 使用浏览器 cookie。
+> 若遇需要登录/地区限制的视频，请通过「更换 Cookie」提供有效的登录 cookie。
+
+## 更新日志
+
+- **v1.1.5**：修复小功能窗口（旋转/合并/提取）操作时主页跳到屏幕顶层——所有文件/目录选择对话框改为以工具窗口为父窗口
+- **v1.1.4**：视频旋转支持多文件选择，队列式逐条执行（单文件失败不中断）
+- **v1.1.3**：新增「取消任务」按钮，可中断当前下载（保留分片，支持续传）；URL 输入框内容不再自动清除，仅关闭软件后清空
+- **v1.1.2**：音视频合并支持 `.weba` 音频格式
+- **v1.1.1**：修复无代理环境变量时下载卡死在"分析视频信息中"——自动检测系统代理并启用；超时/重试缩短，减少假死等待
+- **v1.1.0**：集成 bgutil PO Token provider（app 启动时自动拉起本地服务），配合有效会话 cookie 可解锁年龄限制视频高画质
+- **v1.0.2**：修复年龄限制视频只能下 360P——自动改用 web_safari 客户端（HLS 免 PO Token）重试获取高画质
+- **v1.0.1**：新增「更换 Cookie」按钮；cookie 失效改为纯手动选择文件（移除浏览器自动提取与 Chrome CDP 自动获取）
+- **v1.0.0**：标题栏显示版本号 vX.Y.Z

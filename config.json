@@ -1,7 +1,8 @@
 {
   "download_dir": "I:/downloads",
-  "merge_dir": "C:\\Users\\Admin\\AppData\\Local\\Temp\\opencode\\tool_win_test",
+  "merge_dir": "I:/downloads",
   "cookie_dir": "I:/downloads",
   "rotate_dir": "I:/downloads",
-  "audio_dir": "C:\\Users\\Admin\\AppData\\Local\\Temp\\opencode\\tool_win_test"
+  "audio_dir": "I:/downloads",
+  "cdp_logged_in": true
 }

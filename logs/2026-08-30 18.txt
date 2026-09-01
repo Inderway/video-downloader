@@ -1,0 +1,10 @@
+[2026-08-30 18:17:28] [INFO] 程序启动 (v1.1.5, yt-dlp 2026.08.19)
+[2026-08-30 18:17:28] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-30 18:17:28] [INFO] 使用代理: http://127.0.0.1:7897
+[2026-08-30 18:17:47] [INFO] 已更新 cookie 文件: i:\github\video-downloader\cookies.txt
+[2026-08-30 18:17:48] [INFO] 加入队列，即将开始: https://www.youtube.com/watch?v=Bh9g3bBnR_g
+[2026-08-30 18:17:48] [INFO] 开始下载: https://www.youtube.com/watch?v=Bh9g3bBnR_g
+[2026-08-30 18:17:48] [INFO] 保存目录: I:/downloads
+[2026-08-30 18:17:48] [INFO] 已加载 cookie: i:\github\video-downloader\cookies.txt
+[2026-08-30 18:18:17] [INFO] 已下载: Songraw 松若 青春版 50mm f1.2 許惠玲 ╳ 許玲玲 ╳ sindy_po ╳ 아름다운 소녀 사진 ╳ 美しい女の子の写真撮影 ╳ girl photography (3372p)
+保存至: I:/downloads
