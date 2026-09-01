@@ -183,3 +183,7 @@ cython_debug/
 # Sensitive data
 cookie.txt
 cookies.txt
+chrome-cookie-profile/
+
+# Logs
+logs/
